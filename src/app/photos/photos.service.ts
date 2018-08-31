@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Photo } from './photo';
+import { Photo } from './photo/photo';
 
 @Injectable({
     providedIn: 'root'
