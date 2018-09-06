@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { VMessageComponent } from '../../shared/components/vmessage/vmessage.component';
 import { VMessageModule } from '../../shared/components/vmessage/vmessage.module';
+import { PhotoOwnerOnlyDirective } from './photo-owner-only/photo-owner-only.directive';
+import { PhotoOwnerOnlyModule } from './photo-owner-only/photo-owner-only.module';
 
 @NgModule({
     declarations: [
@@ -17,7 +19,8 @@ import { VMessageModule } from '../../shared/components/vmessage/vmessage.module
         PhotoModule,
         RouterModule,
         ReactiveFormsModule,
-        VMessageModule
+        VMessageModule,
+        PhotoOwnerOnlyModule
     ],
     exports: [
         PhotoDetailsComponent,
