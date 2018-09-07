@@ -9,6 +9,7 @@ import { VMessageComponent } from '../../shared/components/vmessage/vmessage.com
 import { VMessageModule } from '../../shared/components/vmessage/vmessage.module';
 import { PhotoOwnerOnlyDirective } from './photo-owner-only/photo-owner-only.directive';
 import { PhotoOwnerOnlyModule } from './photo-owner-only/photo-owner-only.module';
+import { ShowIfLoggedModule } from '../../shared/diretives/show-if-logged/show-if-logged.module';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { PhotoOwnerOnlyModule } from './photo-owner-only/photo-owner-only.module
         RouterModule,
         ReactiveFormsModule,
         VMessageModule,
-        PhotoOwnerOnlyModule
+        PhotoOwnerOnlyModule,
+        ShowIfLoggedModule
     ],
     exports: [
         PhotoDetailsComponent,
