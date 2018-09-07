@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PhotoForm } from './photo-form';
 import { PhotosService } from '../photos.service';
 import { Router } from '@angular/router';
+import { AlertService } from '../../shared/components/alert/alert.service';
+import { UserService } from '../../core/user/user.service';
 
 @Component({
     selector: 'ap-photo-form',
@@ -18,7 +20,9 @@ export class PhotoFormComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private photoService: PhotosService,
-        private router: Router
+        private router: Router,
+        private alertService: AlertService,
+        private userService: UserService
     ) { }
 
     ngOnInit() {
@@ -36,7 +40,8 @@ export class PhotoFormComponent implements OnInit {
 
         this.photoService.upload(data).subscribe(
             () => {
-                this.router.navigate(['']);
+                this.alertService.success('Upload complete', true);
+                this.router.navigate(['/user', this.userService.getUserName()]);
             },
             err => {
                 console.log('Error: ' + err);

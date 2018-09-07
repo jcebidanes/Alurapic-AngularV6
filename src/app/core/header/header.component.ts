@@ -3,6 +3,7 @@ import { UserService } from '../user/user.service';
 import { Observable } from 'rxjs';
 import { User } from '../user/user';
 import { Router } from '@angular/router';
+import { AlertService } from '../../shared/components/alert/alert.service';
 
 @Component({
     selector: 'ap-header',
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
     constructor(
         private userService: UserService,
-        private router: Router
+        private router: Router,
     ) {
         this.user$ = userService.getUser();
     }
