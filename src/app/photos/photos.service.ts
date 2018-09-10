@@ -5,8 +5,9 @@ import { PhotoForm } from './photo-form/photo-form';
 import { PhotoComment } from './photo/photo-comment';
 import { map, catchError } from 'rxjs/operators';
 import { of, throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
-const API = 'http://localhost:3000';
+const API = environment.apiUrl;
 
 @Injectable({
     providedIn: 'root'
@@ -16,13 +17,13 @@ export class PhotosService {
     constructor(private http: HttpClient) { }
 
     listFromUser(user: string) {
-        return this.http.get<Photo[]>(`http://localhost:3000/${user}/photos`);
+        return this.http.get<Photo[]>(API + `/${user}/photos`);
     }
 
     listFromUserPaginated(user: string, page: number) {
         const params = new HttpParams().append('page', page.toString());
 
-        return this.http.get<Photo[]>(`http://localhost:3000/${user}/photos`, { params });
+        return this.http.get<Photo[]>(API + `/${user}/photos`, { params });
     }
 
     upload(photoForm: PhotoForm) {
