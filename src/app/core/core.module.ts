@@ -8,6 +8,8 @@ import { FooterComponent } from './footer/footer.component';
 import { AlertModule } from '../shared/components/alert/alert.module';
 import { LoadingComponent } from '../shared/components/loading/loading.component';
 import { LoadingModule } from '../shared/components/loading/loading.module';
+import { MenuModule } from '../shared/components/menu/menu.module';
+import { ShowIfLoggedModule } from '../shared/diretives/show-if-logged/show-if-logged.module';
 
 @NgModule({
     declarations: [
@@ -18,7 +20,9 @@ import { LoadingModule } from '../shared/components/loading/loading.module';
         CommonModule,
         RouterModule,
         AlertModule,
-        LoadingModule
+        LoadingModule,
+        MenuModule,
+        ShowIfLoggedModule
     ],
     exports: [
         HeaderComponent,
