@@ -13,8 +13,7 @@ const API = environment.apiUrl;
     providedIn: 'root'
 })
 export class PhotosService {
-
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {}
 
     listFromUser(user: string) {
         return this.http.get<Photo[]>(API + `/${user}/photos`);
@@ -27,10 +26,12 @@ export class PhotosService {
     }
 
     upload(photoForm: PhotoForm) {
-
         const formData = new FormData();
         formData.append('description', photoForm.description);
-        formData.append('allowComments', photoForm.allowComments ? 'true' : 'false');
+        formData.append(
+            'allowComments',
+            photoForm.allowComments ? 'true' : 'false'
+        );
         formData.append('imageFile', photoForm.file);
 
         return this.http.post(API + '/photos/upload', formData, {
@@ -44,13 +45,15 @@ export class PhotosService {
     }
 
     getComments(photoId: number) {
-        return this.http.get<PhotoComment[]>(API + '/photos/' + photoId + '/comments');
+        return this.http.get<PhotoComment[]>(
+            API + '/photos/' + photoId + '/comments'
+        );
     }
 
     addComments(photoId: number, commentText: string) {
-        return this.http.post(API + '/photos/' + photoId + '/comments',
-            { commentText }
-        );
+        return this.http.post(API + '/photos/' + photoId + '/comments', {
+            commentText
+        });
     }
 
     removePhoto(photoId: number) {
@@ -58,13 +61,18 @@ export class PhotosService {
     }
 
     like(photoId: number) {
-        return this.http.post(
-            API + '/photos/' + photoId + '/like', {}, { observe: 'response' }
-        )
+        return this.http
+            .post(
+                API + '/photos/' + photoId + '/like',
+                {},
+                { observe: 'response' }
+            )
             .pipe(map(res => true))
-            .pipe(catchError(err => {
-                // tslint:disable-next-line:triple-equals
-                return err.status == '304' ? of(false) : throwError(err);
-            }));
+            .pipe(
+                catchError(err => {
+                    // tslint:disable-next-line:triple-equals
+                    return err.status == '304' ? of(false) : throwError(err);
+                })
+            );
     }
 }
